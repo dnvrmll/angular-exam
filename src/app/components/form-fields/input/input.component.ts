@@ -21,8 +21,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular
 export class InputComponent implements ControlValueAccessor {
 
   @Input() public value = '';
-  @Input()  public placeHolder = '';
+  @Input() public placeHolder = '';
   @Input() public inputType = 'text';
+  @Input() public icon = '';
+  @Input() public showHint = '';
 
   constructor() {}
 
