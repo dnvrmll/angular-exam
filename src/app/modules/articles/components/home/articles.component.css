@@ -1,0 +1,21 @@
+.article {
+  width: 100%;
+}
+
+.article .title {
+  padding: 24px 24px 0px 18px;
+}
+
+.article .panel {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.article .panel .input {
+  margin-right: 16px;
+}
+
+.card {
+  margin-bottom: 6px;
+}

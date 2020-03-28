@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, Output, EventEmitter } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 
 @Component({
@@ -25,6 +25,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() public inputType = 'text';
   @Input() public icon = '';
   @Input() public showHint = '';
+  @Output() public inputChange = new EventEmitter<any>();
 
   constructor() {}
 
@@ -39,5 +40,11 @@ export class InputComponent implements ControlValueAccessor {
     this.propagateChange = fn;
   }
   public registerOnTouched() {}
+
+  public onInputChanged(value) {
+
+    this.value = value;
+    this.inputChange.emit(value);
+  }
 }
 

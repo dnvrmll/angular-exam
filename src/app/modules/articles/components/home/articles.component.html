@@ -1,0 +1,31 @@
+<div class="article">
+
+  <div class="title">
+    <h1>All Articles</h1>
+  </div>
+
+  <div class="article panel">
+    <div class="row">
+      <div class="col-md">
+        <input-component class="input" [inputType]="'text'" (inputChange)="keyUp.next($event)" [value]="params.search"
+          [placeHolder]="'Search article..'" [icon]="'search'">
+        </input-component>
+      </div>
+      <div class="col-md">
+        <select-box [label]="'Filter by'" [options]="[{ name: 'Author' }, { name: 'Title' }, { name: 'Body' }]"
+          (change)="onGetParams($event)"></select-box>
+      </div>
+    </div>
+  </div>
+
+
+  <div clas="article content">
+    <div class="row">
+      <div class="col-md-6 col-lg-3 card" *ngFor="let obj of articles">
+        <card-widget [data]="obj"></card-widget>
+      </div>
+    </div>
+  </div>
+
+
+</div>

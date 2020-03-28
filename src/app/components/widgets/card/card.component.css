@@ -1,3 +1,26 @@
+
 .card-widget {
   width: 100%;
+  background-color: #F5F5F5;
+  height: 155px;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 6px;
+  overflow: hidden;
+  
+}
+
+.card-widget .card-header p {
+  margin: unset;
+}
+
+.card-widget .card-content p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-widget .card-content {
+  height: 100%;
 }
