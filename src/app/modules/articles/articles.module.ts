@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ArticleViewComponent, ArticleComponent } from './components';
 import { ArticleRoutes } from './articles.routes';
 import { FormFieldDirective } from '../../core/directives/form-fields';
+import { WidgetDirective } from '../../core/directives/widget.directive';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormFieldDirective,
+    WidgetDirective,
     ArticleRoutes
   ],
   declarations: [

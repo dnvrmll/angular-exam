@@ -5,13 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
+export class CardWidgetComponent {
 
-export class CardWidgetComponent implements OnInit {
-
-  @Input() public data: any[] = [];
-  constructor() {}
-
-  public ngOnInit() {
-    // TODO
-  }
+  @Input() public data: any;
 }
