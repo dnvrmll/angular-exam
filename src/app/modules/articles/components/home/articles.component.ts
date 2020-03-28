@@ -15,13 +15,12 @@ export class ArticleComponent implements AfterContentInit {
   public params = {
     search: ''
   };
-
   public filterBy = 'Author';
-
   public keyUp = new Subject<string>();
-
   public articles: any[] = [];
   public searchArticles: any[] = [];
+  public isLoading: boolean = true;
+
   constructor(private postService: PostService, private userService: UserService) {
     this.keyUp.pipe(
       map(event => event),
@@ -37,35 +36,37 @@ export class ArticleComponent implements AfterContentInit {
 
   public onGetParams(el: any) {
     this.filterBy = el;
+    this.onSearchArticle();
   }
 
   public onSearchArticle(filterBy?: any) {
-
+    this.isLoading = true;
+    const searchArticles: any[] = [];
     let compare: any;
+    const txt = filterBy ? filterBy : (this.params.search ? this.params.search : '');
     this.postService.get().pipe(
       mergeMap(dataPost => this.userService.getUser().pipe(
         map(users => {
-          const searchArticles: any[] = [];
           dataPost.forEach(post => {
             const res = users.find((u: any) => u.id === post.userId);
             post.author = res;
-            if (filterBy) {
+            if (txt) {
               if (this.filterBy === 'Author') {
-                compare = new RegExp('^' + filterBy.replace(/\*/g, '.*') + '$').test(post.author.name);
+                compare = new RegExp('^' + txt.replace(/\*/g, '.*') + '$').test(post.author.name);
               }
               if (this.filterBy === 'Title') {
-                compare = new RegExp('^' + filterBy.replace(/\*/g, '.*') + '$').test(post.title);
+                compare = new RegExp('^' + txt.replace(/\*/g, '.*') + '$').test(post.title);
               }
               if (this.filterBy === 'Body') {
-                compare = new RegExp('^' + filterBy.replace(/\*/g, '.*') + '$').test(post.body);
+                compare = new RegExp('^' + txt.replace(/\*/g, '.*') + '$').test(post.body);
               }
               if (compare) {
-                searchArticles.push(dataPost);
+                return searchArticles.push(post);
               }
             }
           });
 
-          if (searchArticles.length > 0) {
+          if (txt) {
             return searchArticles;
           } else {
             return dataPost;
@@ -74,6 +75,7 @@ export class ArticleComponent implements AfterContentInit {
       ))
     ).subscribe(data => {
       this.articles = data;
+      this.isLoading = false;
     });
   }
 }

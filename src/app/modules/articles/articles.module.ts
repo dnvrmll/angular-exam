@@ -4,6 +4,8 @@ import { ArticleViewComponent, ArticleComponent } from './components';
 import { ArticleRoutes } from './articles.routes';
 import { FormFieldDirective } from '../../core/directives/form-fields';
 import { WidgetDirective } from '../../core/directives/widget.directive';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -11,6 +13,7 @@ import { WidgetDirective } from '../../core/directives/widget.directive';
     CommonModule,
     FormFieldDirective,
     WidgetDirective,
+    MatProgressSpinnerModule,
     ArticleRoutes
   ],
   declarations: [

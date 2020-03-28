@@ -20,11 +20,25 @@
 
 
   <div clas="article content">
-    <div class="row">
-      <div class="col-md-6 col-lg-3 card" *ngFor="let obj of articles">
-        <card-widget [data]="obj"></card-widget>
+    <div *ngIf="!isLoading; else showIsLoading">
+      <div *ngIf="articles.length > 0; else showEmptyResult">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 card" *ngFor="let obj of articles">
+            <card-widget [data]="obj"></card-widget>
+          </div>
+        </div>
       </div>
+      <ng-template #showEmptyResult>
+        <div class="noResult">
+          <h3> No articles found! please check your input. </h3>
+        </div>
+      </ng-template>
     </div>
+    <ng-template #showIsLoading>
+      <div class="isLoading">
+        <mat-spinner strokeWidth="3"></mat-spinner>
+      </div>
+    </ng-template>
   </div>
 
 
