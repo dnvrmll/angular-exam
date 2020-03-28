@@ -7,12 +7,12 @@
   <div class="article panel">
     <div class="row">
       <div class="col-md">
-        <input-component class="input" [inputType]="'text'" [value]="params.search" [placeHolder]="'Search article..'"
-          [icon]="'search'">
+        <input-component class="input" [inputType]="'text'" (inputChange)="keyUp.next($event)" [value]="params.search"
+          [placeHolder]="'Search article..'" [icon]="'search'">
         </input-component>
       </div>
       <div class="col-md">
-        <select-box [label]="'Select author'" [options]="[{ name: 'test' }, { name: 'test1' }]"
+        <select-box [label]="'Filter by'" [options]="[{ name: 'Author' }, { name: 'Title' }, { name: 'Body' }]"
           (change)="onGetParams($event)"></select-box>
       </div>
     </div>
